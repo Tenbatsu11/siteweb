@@ -1,4 +1,7 @@
 <?php
+$option = [
+    pdo::ATTR_ERRMODE => pdo::ERRMODE_EXCEPTION
+];
 
 try {
     $config= parse_ini_file($_SERVER["DOCUMENT_ROOT"]."/siteweb/.env");

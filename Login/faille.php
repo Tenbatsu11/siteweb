@@ -1,9 +1,5 @@
 <?php
 
-$option = [
-    pdo::ATTR_ERRMODE => pdo::ERRMODE_EXCEPTION
-];
-
 
 //Connexion a la bdd
 

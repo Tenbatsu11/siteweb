@@ -1,7 +1,5 @@
 <?php
-$option = [
-    pdo::ATTR_ERRMODE => pdo::ERRMODE_EXCEPTION
-];
+
 require_once '../libs/pdo.php';
 
 //accès au formulaire d'insription
