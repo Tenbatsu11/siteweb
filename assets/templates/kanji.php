@@ -1,0 +1,36 @@
+<?php
+require_once(__DIR__.'/../assets/templates/header.php');
+
+
+
+?>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>万 </title>
+    <link rel="stylesheet" href="style.css">
+</head>
+    <body>
+        <main class="fade-in">
+            <h1>Le kanji <ruby>万 <rt>マン</rt></ruby></h1>
+
+            <div class="kanji">万 </div>
+
+            <div class="section">
+                <h2>Signification</h2>
+                <p>Dix-mille</p>
+            </div>
+
+            <div class="section">
+                <h2>Lectures</h2>
+                <ul>
+                    <li>(lecture kunyomi) : よろず (yorozu)</li>
+                    <li>(lecture onyomi) : マン (man), バン (ban) </li>
+                </ul>
+            </div>
+        </main>
+    </body>
+</html>
