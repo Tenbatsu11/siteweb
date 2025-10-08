@@ -1,0 +1,46 @@
+classDiagram
+
+%% === Classes ===
+
+class Users {
+  +char id
+  +varchar email
+  +varchar password
+  +varchar username
+  +enum'N5,N4,N3,N2,N1' user_lvl
+  +getUsername()
+  +setUsername()
+  +getUserlvl()
+  +setUserlvl()  
+
+}
+
+class Kanji {
+  +int auto_incr id
+  +char kanji_name
+  +varchar kunyomi
+  +varchar onyomi
+  +text description
+  +enum'N5,N4,N3,N2,N1' jlptlvl
+  +getId()
+  +setId()
+}
+
+class Vocabulaire {
+    +int auto_incr id
+    +varchar word
+    +lecture furigana
+    +varchar traduction
+    +texte exemples
+    +getId()
+    +setId()
+
+}
+
+
+
+%% === Relations ===
+
+
+Users --> "0..*" Kanji : Apprend
+Users --> "0..*" Vocabulaire : Apprend
