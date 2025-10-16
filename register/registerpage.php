@@ -37,5 +37,10 @@
             </form>
             <p>Déjà inscrit ? <a href="https://localhost/siteweb/Login/login.php">Connectez vous !</a></p>
         </main>
+        <?php
+        require_once (__DIR__.'/../assets/templates/footer.php');   
+    ?>
     </body>
+    
 </html>
+

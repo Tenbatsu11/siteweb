@@ -45,5 +45,8 @@ if (!$vocab){
             </div>
 
         </main>
+        <?php
+        require_once (__DIR__.'/../../assets/templates/footer.php');   
+    ?>
     </body>
 </html>
