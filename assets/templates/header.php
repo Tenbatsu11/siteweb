@@ -20,7 +20,7 @@
          <li><a href="#" class="nav-link px-2">Kanjis</a></li>
          <li><a href="#" class="nav-link px-2">Vocabulaire</a></li>
          <li><a href="#" class="nav-link px-2">FAQs</a></li>
-         <li><a href="#" class="nav-link px-2">About</a></li>
+         <li><a href="#" class="nav-link px-2">About us</a></li>
      </ul>
      <div class="col-md-3 text-end"> 
         <button type="button" class="btn btn-outline-primary me-2">Login</button> 

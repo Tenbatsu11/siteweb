@@ -29,5 +29,9 @@ require_once(__DIR__.'/../assets/templates/header.php');
             </form>
             <p>Pas déjà inscrit ? <a href="https://localhost/siteweb/register/registerpage.php">Inscrivez vous!</a>
         </main>
+        <?php
+        require_once (__DIR__.'/../assets/templates/footer.php');   
+    ?>
     </body>
+    
 </html>

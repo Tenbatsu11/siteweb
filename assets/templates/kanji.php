@@ -11,7 +11,7 @@ $pdo_prep->execute();
 $kanji = $pdo_prep->fetch();
 
 if (!$kanji){
-    die('Kanji introuvable');
+    die ('Kanji introuvable');
 }
 
 ?>
@@ -46,5 +46,8 @@ if (!$kanji){
                 </ul>
             </div>
         </main>
+        <?php
+        require_once (__DIR__.'/../../assets/templates/footer.php');   
+    ?>
     </body>
 </html>
