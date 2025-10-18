@@ -23,10 +23,10 @@ require_once(__DIR__ . '/libs/pdo.php');
                     <div class="col">
                         <div class="card shadow-sm"> <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
                                 <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Kanji</text>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Vocabulaire</text>
                             </svg>
                             <div class="card-body">
-                                <p class="card-text">Description du kanji avec appel pdo. Bouclage depuis la DB à faire</p>
+                                <p class="card-text">Description du mot de vocabulaire avec fetch pdo</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Voir</button> </div>
                                 </div>
@@ -36,10 +36,10 @@ require_once(__DIR__ . '/libs/pdo.php');
                     <div class="col">
                         <div class="card shadow-sm"> <svg aria-label="Placeholder: Thumbnail" class="bd-placeholder-img card-img-top" height="225" preserveAspectRatio="xMidYMid slice" role="img" width="100%" xmlns="http://www.w3.org/2000/svg">
                                 <title>Placeholder</title>
-                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Kanji</text>
+                                <rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Vocabulaire</text>
                             </svg>
                             <div class="card-body">
-                                <p class="card-text">Description du kanji avec appel pdo. Bouclage depuis la DB à faire</p>
+                                <p class="card-text">Description du mot de vocabulaire avec fetch pdo</p>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group"> <button type="button" class="btn btn-sm btn-outline-secondary">Voir</button> </div>
                                 </div>
