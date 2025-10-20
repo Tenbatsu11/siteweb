@@ -1,17 +1,14 @@
 <?php
 require_once (__DIR__.'/../../libs/pdo.php');
 require_once (__DIR__.'/../../assets/templates/header.php');
+require_once (__DIR__.'/../../libs/getvocabulaire.php');
 
 
-$id = $_GET['word'];
-
-$pdo_prep = $pdo->prepare("SELECT * FROM vocabulaire WHERE word =:word");
-$pdo_prep->bindValue(':word', $id);
-$pdo_prep->execute();
-$vocab = $pdo_prep->fetch();
-
-if (!$vocab){
-    die('Mot de vocabulaire introuvable.');
+if (isset ($_GET['word'])) {
+    $word = $_GET['word'];
+    $vocab = getVocabulaire($word, $pdo);
+} else {    
+    die ('Aucun mot de vocabulaire spécifié.');
 }
 
 ?>

@@ -1,17 +1,14 @@
 <?php
 require_once (__DIR__.'/../../libs/pdo.php');
 require_once (__DIR__.'/../../assets/templates/header.php');
+require_once (__DIR__.'/../../libs/getkanji.php');
 
 
-$id = $_GET['kanji_name'];
-
-$pdo_prep = $pdo->prepare("SELECT * FROM kanji WHERE kanji_name =:name");
-$pdo_prep->bindValue(':name', $id);
-$pdo_prep->execute();
-$kanji = $pdo_prep->fetch();
-
-if (!$kanji){
-    die ('Kanji introuvable');
+if (isset ($_GET['kanji_name'])) {
+    $kanji_name = $_GET['kanji_name'];
+    $kanji = getKanji($kanji_name, $pdo);
+} else {    
+    die ('Aucun kanji spécifié.');
 }
 
 ?>
