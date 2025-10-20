@@ -1,3 +1,7 @@
+ <?php
+ session_start();
+ ?>
+
  <!DOCTYPE html>
  <html lang="fr">
 
@@ -19,11 +23,17 @@
          <li><a href="https://localhost/siteweb/index.php" class="nav-link px-2 link-secondary">Home</a></li>
          <li><a href="https://localhost/siteweb/kanjihome.php" class="nav-link px-2">Kanjis</a></li>
          <li><a href="https://localhost/siteweb/vocabulairehome.php" class="nav-link px-2">Vocabulaire</a></li>
-         <li><a href="#" class="nav-link px-2">FAQs</a></li>
+         <li><a href="#" class="nav-link px-2">BIEN COMMENCER</a></li>
          <li><a href="#" class="nav-link px-2">About us</a></li>
      </ul>
+
      <div class="col-md-3 text-end"> 
-        <button type="button" class="btn btn-outline-primary me-2">Login</button> 
-     <button type="button" class="btn btn-primary">Sign-up</button> 
+        <?php if (isset($_SESSION['user'])): ?> 
+         <span class="me-2">Bonjour, <?= htmlspecialchars($_SESSION['user']['username']) ?></span> 
+         <a href="https://localhost/siteweb/logout.php" class="btn btn-outline-primary me-2">Logout</a>
+         <?php else: ?>
+            <a class="btn btn-outline-primary me-2" href="https://localhost/siteweb/Login/login.php">Connexion</a>
+            <a class="btn btn-primary btn-outline-primary me-2" href="https://localhost/siteweb/register/registerpage.php">Inscription</a>
+        <?php endif; ?>     
     </div>
  </header>

@@ -1,6 +1,6 @@
 <?php
 
-
+/*
 //Connexion a la bdd
 
 require_once '../libs/pdo.php';
