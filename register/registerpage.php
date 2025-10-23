@@ -4,8 +4,22 @@ require_once(__DIR__ . '/../libs/pdo.php');
 require_once(__DIR__ . '/../libs/user.php');
 
 if ($_SERVER['REQUEST_METHOD']  === 'POST') {
+    $verif = verifyUser($_POST, $pdo);
+    if ($verif === true) {
+        $resAdd = addUser(
+            htmlspecialchars(trim($_POST['username'])),
+            htmlspecialchars(trim($_POST['email'])),
+            $_POST['password'],
+            $pdo
+        );
+        header('Location: index.php');
+    } else {
+        $error = $verif;
+    }
 }
+
 ?>
+
 <!DOCTYPE html>
 <html>
 
@@ -24,28 +38,48 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
             </a>
         </div>
         <h1>Formulaire d'inscription</h1>
-        <form action="register.php" method="Post" class="form fade-in">
+        <form action="" method="Post" class="form fade-in">
             <div class="mb-3">
                 <label for="username">Nom d'utilisateur:</label>
                 <br>
                 <input type="text" id="username" name="username" required>
+                <?php if (isset($error['username'])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error['username']; ?>
+                    </div>
+                <?php } ?>
                 <br><br>
             </div>
             <div class="mb-3">
                 <laber for="email">Adresse Email :</label>
                     <br>
                     <input type="text" id="email" name="email" required>
+                    <?php if (isset($error['email'])) { ?>
+                        <div class="alert alert-danger" role="alert">
+                            <?= $error['email']; ?>
+                        </div>
+                    <?php } ?>
                     <br><br>
             </div>
-            <div>
+            <div class="mb-3">
                 <label for="password" id="password">Mot de passe:</label>
                 <br>
                 <input type="password" id="password" name="password" required>
+                <?php if (isset($error['password'])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error['password']; ?>
+                    </div>
+                <?php } ?>
                 <br><br>
             </div>
             <div class="mb-3">
-                <label for="cofirm_password">Confirmer le mot de passe :</label>
+                <label for="confirm_password">Confirmer le mot de passe :</label>
                 <input type="password" name="confirm_password" required>
+                <?php if (isset($error['confirm_password'])) { ?>
+                    <div class="alert alert-danger" role="alert">
+                        <?= $error['confirm_password']; ?>
+                    </div>
+                <?php } ?>
                 <br><br>
             </div>
             <input type="submit" value="S'inscrire">

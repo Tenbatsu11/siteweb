@@ -14,6 +14,7 @@ function verifyUserLogin($username, $password, PDO $pdo) {
         return false; // Retourner false si les identifiants sont incorrects
     }
 }
+
 function addUser($username, $email, $password,PDO $pdo) {
     // Hacher le mot de passe avant de le stocker
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
@@ -28,18 +29,55 @@ function addUser($username, $email, $password,PDO $pdo) {
     return $pdo_prep->execute();
 }
 
-function verifyUser($user): array|bool
+function verifyUser($user, PDO $pdo): array|bool
     {
         $error = [];
-        if (empty($user['username']) || empty($user['password']) || empty($user['email']) || empty($user['confirm_password'])) {
-            $error[] = "Tous les champs sont obligatoires.";
-        } elseif (!filter_var($user['email'], FILTER_VALIDATE_EMAIL)) {
-            $error[] = "Adresse email invalide.";
-        }elseif (strlen($user['password']) < 8) {
-            $error[] = "Le mot de passe doit contenir au moins 6 caractères.";
-        } elseif ($user['password'] !== $user['confirm_password']) {
-            $error[] = "Les mots de passe ne correspondent pas.";
+        if (isset($user['username'])) {
+            if (strlen($user['username']) < 3 || strlen($user['username']) > 20) {
+                $error["username"] = "Le nom d'utilisateur doit contenir entre 3 et 20 caractères.";
+            } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', $user['username'])) {
+                $error["username"] = "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et des underscores.";
+            }
         } else {
+            $error["username"] = "Le nom d'utilisateur est requis.";
+        }
+
+        if (isset($user['email'])) {
+            if (!filter_var($user['email'], FILTER_VALIDATE_EMAIL) || strlen($user['email']) > 50) {
+                $error["email"] = "L'adresse email n'est pas valide.";
+            } else {
+                // Vérifier si l'email est déjà utilisé
+                $pdo_prep = $pdo->prepare("SELECT email FROM users WHERE email = :email");
+                $pdo_prep->bindValue(':email', $user['email']);
+                $pdo_prep->execute();
+
+                if ($pdo_prep->rowCount() > 0) {
+                    $error["email"] = "Cet email est déjà utilisé.";
+                }
+            }
+        } else {
+            $error["email"] = "L'adresse email est requise.";
+        }
+
+        if (isset($user['password'])) {
+            if (strlen($user['password']) < 6) {
+                $error["password"] = "Le mot de passe doit contenir au moins 6 caractères.";
+            }
+        } else {
+            $error["password"] = "Le mot de passe est requis.";
+        }
+
+        if (isset($user['confirm_password'])) {
+            if ($user['password'] !== $user['confirm_password']) {
+                $error["confirm_password"] = "Les mots de passe ne correspondent pas.";
+            }
+        } else {
+            $error["confirm_password"] = "La confirmation du mot de passe est requise.";
+        }
+
+        if (empty($error)) {
             return true;
+        } else {
+            return $error;
         }
     }

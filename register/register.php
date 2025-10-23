@@ -1,5 +1,5 @@
 <?php
-
+/*
 require_once '../libs/pdo.php';
 
 //accès au formulaire d'insription
