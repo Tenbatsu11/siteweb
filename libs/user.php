@@ -60,8 +60,8 @@ function verifyUser($user, PDO $pdo): array|bool
         }
 
         if (isset($user['password'])) {
-            if (strlen($user['password']) < 6) {
-                $error["password"] = "Le mot de passe doit contenir au moins 6 caractères.";
+            if (strlen($user['password']) < 6 || !preg_match('/[A-Za-z]/', $user['password']) || !preg_match('/[0-9]/', $user['password']) || !preg_match('/[!@#$%^&*(),.?":{}|<>]/', $user['password'])) {
+                $error["password"] = "Le mot de passe doit contenir au moins 6 caractères. Il doit inclure au moins une lettre et un chiffre, ainsi qu'un caractère spécial.";
             }
         } else {
             $error["password"] = "Le mot de passe est requis.";
