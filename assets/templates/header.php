@@ -1,5 +1,15 @@
  <?php
  session_start();
+/**
+    // Global error handler
+ set_error_handler(function($errno, $errstr, $errfile, $errline)  {
+    echo "Une erreur est survenue." . PHP_EOL;
+    //Fails Gracefully
+    if ($errno === E_WARNING) {
+        exit();
+    }
+ });
+ */
  ?>
 
  <!DOCTYPE html>
