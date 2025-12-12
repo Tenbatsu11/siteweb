@@ -18,7 +18,7 @@ require_once(__DIR__ . '/libs/pdo.php');
 <body>
     <main class="fade-in d-flex align-items-center justify-content-center flex-column">
 
-        <h1>Bien Commencer avec le Japonais : Installer le Clavier Japonais sur Windows</h1>
+        <h1>Bien Commencer avec le Japonais : Installer le Clavier Japonais</h1>
         <h2>Pour pouvoir écrire en japonais sur ton ordinateur Windows,Linux ( ici Ubuntu ) ou encore MacOS.</h2>
         <p><strong>Voici un guide étape par étape pour t'aider à le faire facilement.</strong></p>
 
