@@ -1,7 +1,6 @@
 <?php
 
 require_once(__DIR__ . '/assets/templates/header.php');
-require_once(__DIR__ . '/libs/pdo.php');
 ?>
 
 <!DOCTYPE html>
