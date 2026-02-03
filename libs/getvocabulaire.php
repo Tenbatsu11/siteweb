@@ -1,6 +1,7 @@
 <?php
 
-function getVocabulaire(PDO $pdo, array $filters = []) :array {
+function getVocabulaire(PDO $pdo, array $filters = []): array
+{
     $orderBy = 'word DESC';
     $conditions = [];
     $params = [];
@@ -27,7 +28,8 @@ function getVocabulaire(PDO $pdo, array $filters = []) :array {
     return $vocabList = $pdo_prep->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getVocabulaireByWord($word, PDO $pdo) {
+function getVocabulaireByWord($word, PDO $pdo)
+{
     $pdo_prep = $pdo->prepare("SELECT * FROM vocabulaire WHERE word = :word");
     $pdo_prep->bindValue(':word', $word);
     $pdo_prep->execute();

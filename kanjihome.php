@@ -31,47 +31,47 @@ $categories = getJLPTLevels($pdo);
 
 <body>
 
-<div class="row">
-    <div class="col-md-2">
-        <form action="" method="get">
-            <h2>Filtres</h2>
-            <div class="p-3 border-bottom">
-                <input type="text" name="kanji_name" id="kanji_name" class="form-control" placeholder="Rechercher" value="<?php if (isset($_GET["kanji_name"])) {
-                                                                                                                        echo htmlspecialchars($_GET["kanji_name"]);
-                                                                                                                    } ?>">
-            </div>
-            <div class="p-3 border-bottom">
-                <input type="text" name="description" id="description" class="form-control" placeholder="Rechercher par description" value="<?php if (isset($_GET["description"])) {
-                                                                                                                        echo htmlspecialchars($_GET["description"]);
-                                                                                                                    } ?>">
-            </div>
-            <div class="p-3 border-bottom">
-                <label for="JLPT">Niveau JLTP</label>
-                <select name="JLPT" id="JLPT" class="form-select">
-                    <option value> -- Niveau JLPT -- </option>
-                    <?php foreach ($categories as $category): ?>
-                        <option value="<?= $category["jlptlvl"] ?>" <?php if (isset($_GET["jlptlvl"]) && $category["jlptlvl"] == $_GET["jlptlvl"]) {
-                                                                    echo 'selected="selected"';
-                                                                } ?>><?= $category["jlptlvl"] ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="mt-3">
-                <button type="submit" class="btn btn-primary w-100">Filtrer</button>
-            </div>
-        </form>
+    <div class="row">
+        <div class="col-md-2">
+            <form action="" method="get">
+                <h2>Filtres</h2>
+                <div class="p-3 border-bottom">
+                    <input type="text" name="kanji_name" id="kanji_name" class="form-control" placeholder="Rechercher" value="<?php if (isset($_GET["kanji_name"])) {
+                                                                                                                                    echo htmlspecialchars($_GET["kanji_name"]);
+                                                                                                                                } ?>">
+                </div>
+                <div class="p-3 border-bottom">
+                    <input type="text" name="description" id="description" class="form-control" placeholder="Rechercher par description" value="<?php if (isset($_GET["description"])) {
+                                                                                                                                                    echo htmlspecialchars($_GET["description"]);
+                                                                                                                                                } ?>">
+                </div>
+                <div class="p-3 border-bottom">
+                    <label for="JLPT">Niveau JLTP</label>
+                    <select name="JLPT" id="JLPT" class="form-select">
+                        <option value> -- Niveau JLPT -- </option>
+                        <?php foreach ($categories as $category): ?>
+                            <option value="<?= $category["jlptlvl"] ?>" <?php if (isset($_GET["jlptlvl"]) && $category["jlptlvl"] == $_GET["jlptlvl"]) {
+                                                                            echo 'selected="selected"';
+                                                                        } ?>><?= $category["jlptlvl"] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div class="mt-3">
+                    <button type="submit" class="btn btn-primary w-100">Filtrer</button>
+                </div>
+            </form>
+        </div>
+        <div class="col-md-9">
+            <main class="fade-in">
+                <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
+                    <?php foreach ($kanjiList as $key => $kanji) {
+                        require(__DIR__ . '/assets/templates/kanjicard.php');
+                    }
+                    ?>
+                </div>
+            </main>
+        </div>
     </div>
-    <div class="col-md-9">
-        <main class="fade-in">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <?php foreach ($kanjiList as $key => $kanji) {
-                    require(__DIR__ . '/assets/templates/kanjicard.php');
-                }
-                ?>                
-            </div>
-        </main>
-    </div>
-</div>
     <?php
     require_once(__DIR__ . '/assets/templates/footer.php');
     ?>
