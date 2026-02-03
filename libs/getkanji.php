@@ -1,6 +1,7 @@
 <?php
 
-function getKanjiList(PDO $pdo, array $filters = []) :array {
+function getKanjiList(PDO $pdo, array $filters = []): array
+{
     $orderBy = 'kanji_name DESC';
     $conditions = [];
     $params = [];
@@ -28,7 +29,8 @@ function getKanjiList(PDO $pdo, array $filters = []) :array {
     return $kanjiList = $pdo_prep->fetchAll(PDO::FETCH_ASSOC);
 }
 
-function getKanji($kanji_name,PDO $pdo) {
+function getKanji($kanji_name, PDO $pdo)
+{
     $pdo_prep = $pdo->prepare("SELECT * FROM kanji WHERE kanji_name = :kanji_name");
     $pdo_prep->bindValue(':kanji_name', $kanji_name);
     $pdo_prep->execute();
