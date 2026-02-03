@@ -4,6 +4,7 @@ require_once(__DIR__ . '/../../assets/templates/header.php');
 require_once(__DIR__ . '/../../libs/getkanji.php');
 
 
+
 if (isset($_GET['kanji_name'])) {
     $kanji_name = $_GET['kanji_name'];
     $kanji = getKanji($kanji_name, $pdo);

@@ -3,10 +3,10 @@ require_once(__DIR__ . '/../../libs/pdo.php');
 require_once(__DIR__ . '/../../assets/templates/header.php');
 require_once(__DIR__ . '/../../libs/getvocabulaire.php');
 
-
+var_dump($_GET);
 if (isset($_GET['word'])) {
     $word = $_GET['word'];
-    $vocab = getVocabulaire($word, $pdo);
+    $vocab = getVocabulaireByWord($word, $pdo);
 } else {
     die('Aucun mot de vocabulaire spécifié.');
 }
