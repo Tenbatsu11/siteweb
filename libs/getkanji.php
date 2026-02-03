@@ -1,8 +1,36 @@
 <?php
 
-function getKanji($kanji_name, $pdo) {
-    $pdo_prep = $pdo->prepare("SELECT * FROM kanji WHERE kanji_name = :name");
-    $pdo_prep->bindValue(':name', $kanji_name);
+function getKanjiList(PDO $pdo, array $filters = []) :array {
+    $orderBy = 'kanji_name DESC';
+    $conditions = [];
+    $params = [];
+
+    if (isset($filters['kanji_name'])) {
+        $conditions[] = "kanji_name = :kanji_name";
+        $params[':kanji_name'] = $filters['kanji_name'];
+    }
+
+    if (isset($filters['description'])) {
+        $conditions[] = "description LIKE :description";
+        $params[':description'] = '%' . $filters['description'] . '%';
+    }
+
+    $query = "SELECT * FROM kanji";
+    if (!empty($conditions)) {
+        $query .= " WHERE " . implode(" AND ", $conditions);
+    }
+
+    $pdo_prep = $pdo->prepare($query);
+    foreach ($params as $key => $value) {
+        $pdo_prep->bindValue($key, $value);
+    }
     $pdo_prep->execute();
-    return $vocab = $pdo_prep->fetch();
+    return $kanjiList = $pdo_prep->fetchAll(PDO::FETCH_ASSOC);
+}
+
+function getKanji($kanji_name,PDO $pdo) {
+    $pdo_prep = $pdo->prepare("SELECT * FROM kanji WHERE kanji_name = :kanji_name");
+    $pdo_prep->bindValue(':kanji_name', $kanji_name);
+    $pdo_prep->execute();
+    return $kanji = $pdo_prep->fetch(PDO::FETCH_ASSOC);
 }
