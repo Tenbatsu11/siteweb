@@ -9,7 +9,8 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
         session_regenerate_id(true);
         $_SESSION["user"] = [
             "id" => $user['id'],
-            "username" => $user['username']
+            "username" => $user['username'],
+            "email" => $user['email']
         ];
         header('Location: https://localhost/siteweb/index.php');
     } else {
@@ -29,22 +30,22 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
 </head>
 
 <body>
-    <main class="fade-in">
+    <main class="form-signin w-100 m-auto fade-in">
         <div class="container">
             <a href="https://kumiai.sukai.moe/fr/">
-                <img width="1028" src="/siteweb/assets/images/logo-kumiai.png" alt="Kumiai">
+                <img width="328" src="/siteweb/assets/images/logo-kumiai.png" alt="Kumiai">
             </a>
         </div>
         <h1>Formulaire de connexion</h1>
         <form action="" method="Post" class="form fade-in">
-            <div class="mb-3">
-                <label for="username">Nom d'utilisateur:</label>
-                <input type="text" id="username" name="username">
+            <label for="username">Nom d'utilisateur:</label>
+            <div class="form-floating">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Entrez votre nom d'utilisateur">
                 <br><br>
             </div>
-            <div class="mb-3">
-                <label for="password" id="password">Mot de passe:</label>
-                <input type="password" id="password" name="password">
+            <label for="password" id="password">Mot de passe:</label>
+            <div class="form-floating">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Entrez votre mot de passe">
                 <br><br>
             </div>
             <input type="submit" value="Se connecter">
