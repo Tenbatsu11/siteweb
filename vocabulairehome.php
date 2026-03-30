@@ -46,8 +46,8 @@ $categories = getJLPTLevels($pdo);
                                                                                                                                                 } ?>">
                 </div>
                 <div class="p-3 border-bottom">
-                    <label for="JLPT">Niveau JLTP</label>
-                    <select name="JLPT" id="JLPT" class="form-select">
+                    <label for="jlptlvl">Niveau JLPT</label>
+                    <select name="jlptlvl" id="jlptlvl" class="form-select">
                         <option value> -- Niveau JLPT -- </option>
                         <?php foreach ($categories as $category): ?>
                             <option value="<?= $category["jlptlvl"] ?>" <?php if (isset($_GET["jlptlvl"]) && $category["jlptlvl"] == $_GET["jlptlvl"]) {
