@@ -34,16 +34,20 @@
          <li><a href="https://localhost/siteweb/kanjihome.php" class="nav-link px-2">Kanjis</a></li>
          <li><a href="https://localhost/siteweb/vocabulairehome.php" class="nav-link px-2">Vocabulaire</a></li>
          <li><a href="https://localhost/siteweb/getstarted.php" class="nav-link px-2">Bien Commencer</a></li>
+         <?php if (isset($_SESSION['user'])): ?>
+             <li><a href="https://localhost/siteweb/desktop.php" class="nav-link px-2">Application de Bureau</a></li>
+         <?php endif; ?>
          <li><a href="#" class="nav-link px-2">About us</a></li>
      </ul>
 
      <div class="col-md-3 text-end">
          <?php if (isset($_SESSION['user'])): ?>
              <span class="me-2">Bonjour, <?= htmlspecialchars($_SESSION['user']['username']) ?></span>
+             <a href="https://localhost/siteweb/profile.php" class="btn btn-outline-primary me-2">Profile</a>
              <a href="https://localhost/siteweb/logout.php" class="btn btn-outline-primary me-2">Logout</a>
          <?php else: ?>
              <a class="btn btn-outline-primary me-2" href="https://localhost/siteweb/Login/login.php">Connexion</a>
-             <a class="btn btn-primary btn-outline-primary me-2" href="https://localhost/siteweb/register/registerpage.php">Inscription</a>
+             <a class="btn btn-outline-primary me-2" href="https://localhost/siteweb/register/registerpage.php">Inscription</a>
          <?php endif; ?>
      </div>
  </header>

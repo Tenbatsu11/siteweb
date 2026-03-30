@@ -31,18 +31,17 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
 </head>
 
 <body>
-    <main class="fade-in">
+    <main class="form-signin w-100 m-auto fade-in">
         <div class="container">
             <a href="https://kumiai.sukai.moe/fr/">
-                <img width="1028" src="/siteweb/assets/images/logo-kumiai.png" alt="Kumiai">
+                <img width="328" src="/siteweb/assets/images/logo-kumiai.png" alt="Kumiai">
             </a>
         </div>
         <h1>Formulaire d'inscription</h1>
         <form action="" method="Post" class="form fade-in">
-            <div class="mb-3">
-                <label for="username">Nom d'utilisateur:</label>
-                <br>
-                <input type="text" id="username" name="username" required>
+            <label for="username" id="username">Nom d'utilisateur:</label>
+            <div class="form-floating">
+                <input type="text" id="username" name="username" class="form-control" placeholder="Entrez votre nom d'utilisateur" required>
                 <?php if (isset($error['username'])) { ?>
                     <div class="alert alert-danger" role="alert">
                         <?= $error['username']; ?>
@@ -50,21 +49,19 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
                 <?php } ?>
                 <br><br>
             </div>
-            <div class="mb-3">
-                <laber for="email">Adresse Email :</label>
-                    <br>
-                    <input type="text" id="email" name="email" required>
-                    <?php if (isset($error['email'])) { ?>
-                        <div class="alert alert-danger" role="alert">
+            <label for="email" id="email">Adresse email:</label>
+            <div class="form-floating">
+                <input type="text" id="email" name="email" class="form-control" placeholder="Entrez votre adresse email" required>
+                <?php if (isset($error['email'])) { ?>
+                    <div class="alert alert-danger" role="alert">
                             <?= $error['email']; ?>
                         </div>
                     <?php } ?>
                     <br><br>
             </div>
-            <div class="mb-3">
-                <label for="password" id="password">Mot de passe:</label>
-                <br>
-                <input type="password" id="password" name="password" required>
+            <label for="password" id="password">Mot de passe:</label>
+            <div class="form-floating">
+                <input type="password" id="password" name="password" class="form-control" placeholder="Entrez votre mot de passe" required>
                 <?php if (isset($error['password'])) { ?>
                     <div class="alert alert-danger" role="alert">
                         <?= $error['password']; ?>
@@ -72,9 +69,9 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
                 <?php } ?>
                 <br><br>
             </div>
-            <div class="mb-3">
-                <label for="confirm_password">Confirmer le mot de passe :</label>
-                <input type="password" name="confirm_password" required>
+            <label for="confirm_password" id="confirm_password">Confirmez votre mot de passe:</label>
+            <div class="form-floating">
+                <input type="password" id="confirm_password" name="confirm_password" class="form-control" placeholder="Confirmez votre mot de passe" required>
                 <?php if (isset($error['confirm_password'])) { ?>
                     <div class="alert alert-danger" role="alert">
                         <?= $error['confirm_password']; ?>

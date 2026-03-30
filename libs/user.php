@@ -9,9 +9,9 @@ function verifyUserLogin($username, $password, PDO $pdo) {
 
     // Vérifier si l'utilisateur existe et si le mot de passe correspond
     if ($user && password_verify($password, $user['password'])) {
-        return $user; // Retourner les informations de l'utilisateur si les identifiants sont corrects
+        return $user; 
     } else {
-        return false; // Retourner false si les identifiants sont incorrects
+        return false; 
     }
 }
 
@@ -81,3 +81,45 @@ function verifyUser($user, PDO $pdo): array|bool
             return $error;
         }
     }
+
+function isUsernameTaken($username, $currentUserId, PDO $pdo): bool {
+    // Vérifier si le nom d'utilisateur est déjà utilisé par un autre utilisateur
+    $pdo_prep = $pdo->prepare("SELECT id FROM users WHERE username = :username AND id != :id");
+    $pdo_prep->bindValue(':username', $username);
+    $pdo_prep->bindValue(':id', $currentUserId, PDO::PARAM_STR);
+    $pdo_prep->execute();
+
+    return $pdo_prep->rowCount() > 0;
+}
+
+function updateUsername($userId, $newUsername, PDO $pdo): bool {
+    // Mettre à jour le nom d'utilisateur
+    $pdo_prep = $pdo->prepare("UPDATE users SET username = :username WHERE id = :id");
+    $pdo_prep->bindValue(':username', $newUsername);
+    $pdo_prep->bindValue(':id', $userId, PDO::PARAM_STR);
+
+    return $pdo_prep->execute();
+}
+
+function validateNewUsername($newUsername, $currentUsername, $userId, PDO $pdo): array|bool {
+    // Valider et vérifier la disponibilité d'un nouveau nom d'utilisateur
+    $errors = [];
+
+    if (empty($newUsername)) {
+        $errors[] = "Le nom d'utilisateur ne peut pas être vide.";
+    } elseif (strlen($newUsername) < 3 || strlen($newUsername) > 20) {
+        $errors[] = "Le nom d'utilisateur doit contenir entre 3 et 20 caractères.";
+    } elseif (!preg_match('/^[a-zA-Z0-9_]+$/', $newUsername)) {
+        $errors[] = "Le nom d'utilisateur ne peut contenir que des lettres, des chiffres et des underscores.";
+    } elseif ($newUsername === $currentUsername) {
+        $errors[] = "Le nouveau nom d'utilisateur doit être différent de l'actuel.";
+    } elseif (isUsernameTaken($newUsername, $userId, $pdo)) {
+        $errors[] = "Ce nom d'utilisateur est déjà utilisé.";
+    }
+
+    if (empty($errors)) {
+        return true;
+    } else {
+        return $errors;
+    }
+}
