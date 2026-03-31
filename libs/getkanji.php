@@ -31,7 +31,7 @@ function getKanjiList(PDO $pdo, array $filters = []): array
 
 function getKanji($kanji_name, PDO $pdo)
 {
-    $pdo_prep = $pdo->prepare("SELECT * FROM kanji WHERE kanji_name = :kanji_name");
+    $pdo_prep = $pdo->prepare("SELECT kanji_name, description, onyomi, kunyomi FROM kanji WHERE kanji_name = :kanji_name LIMIT 1");
     $pdo_prep->bindValue(':kanji_name', $kanji_name);
     $pdo_prep->execute();
     return $kanji = $pdo_prep->fetch(PDO::FETCH_ASSOC);

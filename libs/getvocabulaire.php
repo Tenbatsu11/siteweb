@@ -30,7 +30,7 @@ function getVocabulaire(PDO $pdo, array $filters = []): array
 
 function getVocabulaireByWord($word, PDO $pdo)
 {
-    $pdo_prep = $pdo->prepare("SELECT * FROM vocabulaire WHERE word = :word");
+    $pdo_prep = $pdo->prepare("SELECT * FROM vocabulaire WHERE word = :word LIMIT 1");
     $pdo_prep->bindValue(':word', $word);
     $pdo_prep->execute();
     return $vocab = $pdo_prep->fetch(PDO::FETCH_ASSOC);
