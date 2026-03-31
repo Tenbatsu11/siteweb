@@ -27,4 +27,12 @@ function getCategoriesList(PDO $pdo, array $filters = []): array
     $pdo_prep->execute();
     return $categoriesList = $pdo_prep->fetchAll(PDO::FETCH_ASSOC);
 }
+
+function getCategory($id, PDO $pdo)
+{
+    $pdo_prep = $pdo->prepare("SELECT id, category_title, category_description FROM categories WHERE id = :id LIMIT 1");
+    $pdo_prep->bindValue(':id', $id, PDO::PARAM_INT);
+    $pdo_prep->execute();
+    return $category = $pdo_prep->fetch(PDO::FETCH_ASSOC);
+}
 ?>

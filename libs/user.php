@@ -2,7 +2,7 @@
 
 function verifyUserLogin($username, $password, PDO $pdo) {
     // Préparer la requête SQL pour récupérer l'utilisateur par nom d'utilisateur
-    $pdo_prep = $pdo->prepare("SELECT id, username, email, password FROM users WHERE username = :username");
+    $pdo_prep = $pdo->prepare("SELECT id, username, email, password, user_lvl, abonnement FROM users WHERE username = :username");
     $pdo_prep->bindValue(':username', $username);
     $pdo_prep->execute();
     $user = $pdo_prep->fetch(PDO::FETCH_ASSOC);
@@ -20,10 +20,12 @@ function addUser($username, $email, $password,PDO $pdo) {
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
     // Préparer la requête SQL pour insérer un nouvel utilisateur
-    $pdo_prep = $pdo->prepare("INSERT INTO users (username, email, password) VALUES (:username, :email, :password)");
+    $pdo_prep = $pdo->prepare("INSERT INTO users (id, username, email, password, user_lvl, abonnement) VALUES (UUID(), :username, :email, :password, :user_lvl, :abonnement)");
     $pdo_prep->bindValue(':username', $username);
     $pdo_prep->bindValue(':email', $email);
     $pdo_prep->bindValue(':password', $hashedPassword);
+    $pdo_prep->bindValue(':user_lvl', 'N5');
+    $pdo_prep->bindValue(':abonnement', 'GRATUIT');
 
     // Exécuter la requête et vérifier si l'insertion a réussi
     return $pdo_prep->execute();

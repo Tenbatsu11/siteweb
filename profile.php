@@ -84,6 +84,10 @@ require_once(__DIR__ . '/assets/templates/header.php');
                                 <strong>Email:</strong>
                                 <p><?= htmlspecialchars($_SESSION['user']['email']) ?></p>
                             </div>
+                            <div class="col-md-6">
+                                <strong>Abonnement:</strong>
+                                <p><?= htmlspecialchars($_SESSION['user']['abonnement']) ?></p>
+                            </div>
                         </div>
                     </div>
                 </div>

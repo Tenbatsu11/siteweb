@@ -12,7 +12,8 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
             $_POST['password'],
             $pdo
         );
-        header('Location: index.php');
+        header('Location: /siteweb/index.php');
+        exit();
     } else {
         $error = $verif;
     }
