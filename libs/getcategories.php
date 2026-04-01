@@ -1,7 +1,7 @@
 <?php
 function getCategoriesList(PDO $pdo, array $filters = []): array
 {
-    $orderBy = 'category_title ASC';
+    $orderBy = 'category_title DESC';
     $conditions = [];
     $params = [];
 
