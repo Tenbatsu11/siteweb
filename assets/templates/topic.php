@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once(__DIR__ . '/../../assets/templates/header.php');
 require_once(__DIR__ . '/../../libs/pdo.php');
@@ -6,7 +7,7 @@ require_once(__DIR__ . '/../../libs/getcategories.php');
 require_once(__DIR__ . '/../../libs/gettopic.php');
 require_once(__DIR__ . '/../../libs/getposts.php');
 
-session_start();
+
 if (!isset($_SESSION['user'])) {
     header('Location: https://localhost/siteweb/Login/login.php');
     exit();
@@ -25,22 +26,15 @@ if (isset($_GET['cid']) && isset($_GET['tid'])) {
 }
 ?>
 
-<DOCTYPYPE html>
-    <html lang="fr">
+<!DOCTYPE html>
 
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
-        <link rel="stylesheet" href="/siteweb/assets/css/style.css">
-    </head>
-
-    <body>
+<body>
+    <main class="fade-in">
+        <div class="container d-flex align-items-center justify-content-center flex-column mb-4">
+            <h1><?= htmlspecialchars($topic['topic_title']) ?></h1>
+            <p>Posté par : <strong><?= htmlspecialchars($topic['topic_creator_name']) ?></strong> le <?= $topic['topic_date'] ?> | Vues : <?= $topic['topic_views'] ?></p>
+        </div>
         <?php if (isset($_SESSION['user'])) { ?>
-            <input type='submit' class='btn btn-primary' value=' Ajouter une réponse '
-                onclick="window.location = 'https://localhost/siteweb/assets/templates/post_reply.php?cid=<?= $cid ?>&tid=<?= $tid ?>'">
             <?php foreach ($post as $row2) { ?>
                 <div class="container mt-4">
                     <div class="card mb-3">
@@ -48,12 +42,18 @@ if (isset($_GET['cid']) && isset($_GET['tid'])) {
                             <h5 class="card-title"><?= htmlspecialchars($row['topic_title']) ?></h5>
                             <p class="card-text"><?= nl2br(htmlspecialchars($row2['post_content'])) ?></p>
                             <p class="card-text">
-                                <small class="text-muted">Posté par : <?= htmlspecialchars($row2['post_creator']) ?> le <?= $row2['post_date'] ?></small>
+                                <small class="text-muted">Posté par : <?= htmlspecialchars($row2['post_creator_name']) ?> le <?= $row2['post_date'] ?></small>
                             </p>
                         </div>
                     </div>
                 </div>
             <?php } ?>
+            <div class="container d-flex align-items-center justify-content-center flex-column mb-4">
+                <input type='submit' class='btn btn-primary justify-content-center' value=' Ajouter une réponse '
+                    onclick="window.location = 'https://localhost/siteweb/assets/templates/post_reply.php?cid=<?= $cid ?>&tid=<?= $tid ?>'">
+            </div>
+
+
             <?php $oldviews = $row['topic_views'];
             $newviews = $oldviews + 1;
             ?>
@@ -63,6 +63,6 @@ if (isset($_GET['cid']) && isset($_GET['tid'])) {
         <?php
         require_once(__DIR__ . '/../../assets/templates/footer.php');
         ?>
-    </body>
+</body>
 
-    </html>
+</html>

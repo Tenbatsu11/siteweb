@@ -10,8 +10,11 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
             htmlspecialchars(trim($_POST['username'])),
             htmlspecialchars(trim($_POST['email'])),
             $_POST['password'],
+            'N5',
+            'GRATUIT',
             $pdo
         );
+
         header('Location: /siteweb/index.php');
         exit();
     } else {
@@ -82,6 +85,7 @@ if ($_SERVER['REQUEST_METHOD']  === 'POST') {
             </div>
             <input type="submit" value="S'inscrire">
         </form>
+        <?php var_dump($error); ?>
         <p>Déjà inscrit ? <a href="https://localhost/siteweb/Login/login.php">Connectez vous !</a></p>
     </main>
     <?php

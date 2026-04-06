@@ -86,8 +86,17 @@ require_once(__DIR__ . '/assets/templates/header.php');
                             </div>
                             <div class="col-md-6">
                                 <strong>Abonnement:</strong>
-                                <p><?= htmlspecialchars($_SESSION['user']['abonnement']) ?></p>
+                                <?php if ($_SESSION['user']['abonnement'] === 'GRATUIT'): ?>
+                                    <span class="badge bg-secondary">GRATUIT</span>
+                                <?php elseif ($_SESSION['user']['abonnement'] === 'PREMIUM'): ?>
+                                    <span class="badge bg-success">PREMIUM</span>
+                                <?php else: ?>
+                                    <p><?= htmlspecialchars($_SESSION['user']['abonnement']) ?></p>
+                                <?php endif; ?>
                             </div>
+                            <div class='col-md-6'>
+                                <strong>Niveau JLPT:</strong>
+                                <p><?= htmlspecialchars($_SESSION['user']['user_lvl']) ?></p>
                         </div>
                     </div>
                 </div>
@@ -108,7 +117,7 @@ require_once(__DIR__ . '/assets/templates/header.php');
                                     name="new_username" 
                                     placeholder="Entrez votre nouveau nom d'utilisateur"
                                     pattern="[a-zA-Z0-9_]{3,20}"
-                                    title="Le nom d'utilisateur doit contenir entre 3 et 20 caractères (lettres, chiffres, underscores uniquement)"
+                                    title="Le nom d'utilisateur doit contenir entre 3 et 20 caractères (lettres, chiffres, underscores uniquement)."
                                     required
                                 >
                                 <small class="form-text text-muted">

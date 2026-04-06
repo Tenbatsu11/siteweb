@@ -27,12 +27,12 @@ require_once(__DIR__ . '/assets/templates/header.php');
             <p>Si vous avez déjà un compte, connectez-vous pour accéder à toutes les fonctionnalités de Kumiai, y compris notre application de bureau et notre forum de discussion.</p>
             <p>Nous sommes ravis de vous accompagner dans votre apprentissage du japonais. N'hésitez pas à explorer, poser des questions, et partager vos progrès avec la communauté !</p>
             <h5>Pour retrouver toutes les questions et réponses, rendez-vous sur notre forum de discussion en cliquant sur "Forum" dans le menu ci-dessus ou en cliquant sur ce lien : 
-                <a href="https://localhost/siteweb/assets/templates/forum.php">Forum</a></h5>
+                <a href="https://localhost/siteweb/forumhome.php">Forum</a></h5>
             <p>Si vous avez des questions ou besoin d'aide, n'hésitez pas à nous contacter via notre page de contact ou à poser vos questions sur le forum.
                  Nous sommes là pour vous aider dans votre apprentissage du japonais !</p>
 
             <h5>N'hésitez pas non plus à essayer notre application de bureau pour une expérience d'apprentissage plus immersive et interactive. 
-                Vous pouvez la télécharger en cliquant sur <a href="https://localhost/siteweb/assets/templates/desktop.php">Application de Bureau</a>.</h5>     
+                Vous pouvez la télécharger en cliquant sur <a href="https://localhost/siteweb/desktop.php">Application de Bureau</a>.</h5>     
             <br><br>
             <p>Enfin, n'oubliez pas de consulter notre section "Bien Commencer", 
                 pour pouvoir prendre en main plus facilement tous les outils que nous mettons à votre disposition pour apprendre le japonais de manière efficace et agréable.</p>

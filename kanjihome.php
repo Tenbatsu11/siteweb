@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once(__DIR__ . '/assets/templates/header.php');
 require_once(__DIR__ . '/libs/pdo.php');
@@ -64,10 +65,18 @@ $categories = getJLPTLevels($pdo);
         <div class="col-md-9">
             <main class="fade-in">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <?php foreach ($kanjiList as $key => $kanji) {
-                        require(__DIR__ . '/assets/templates/kanjicard.php');
-                    }
-                    ?>
+                    <?php if (!isset($_SESSION['user'])) { ?>
+                        <div class="container" style="background-color: #f8d7da; color: #721c24; padding: 20px; border-radius: 5px; margin-top: 20px;">
+                            <p><strong>Consultez tous les kanjis et leurs détails en vous connectant ou en créant un compte !</strong></p>
+                            <p>Pour pouvoir accéder à tous les kanjis et leurs détails, veuillez vous connecter ou créer un compte.
+                                <a href="https://localhost/siteweb/Login/login.php" class="alert-link">Se connecter / S'inscrire</a>.
+                            </p>
+                        </div>
+                    <?php } else {
+                        foreach ($kanjiList as $key => $kanji) {
+                            require(__DIR__ . '/assets/templates/kanjicard.php');
+                        }
+                    } ?>
                 </div>
             </main>
         </div>

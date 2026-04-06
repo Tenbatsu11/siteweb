@@ -33,7 +33,8 @@ if (isset($_GET['cid']) && isset($_GET['tid'])) {
     </header>
     <main class="fade-in">
         <form action="/siteweb/libs/set_reply.php" method="post" class="container d-flex align-items-center justify-content-center flex-column">
-            <h1>Répondre au sujet</h1>
+            <h1>Répondre au sujet:</h1>
+            <h2><?= $topic['topic_title'] ?></h2>
             <div class="mb-3 w-100">
                 <label for="reply_content" class="form-label">Contenu de la réponse</label>
                 <textarea class="form-control" id="reply_content" name="reply_content" rows="5" cols="75" required></textarea>
