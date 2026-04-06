@@ -15,7 +15,7 @@ function verifyUserLogin($username, $password, PDO $pdo) {
     }
 }
 
-function addUser($username, $email, $password,PDO $pdo) {
+function addUser($username, $email, $password,$user_lvl, $abonnement, PDO $pdo) {
     // Hacher le mot de passe avant de le stocker
     $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
@@ -24,8 +24,8 @@ function addUser($username, $email, $password,PDO $pdo) {
     $pdo_prep->bindValue(':username', $username);
     $pdo_prep->bindValue(':email', $email);
     $pdo_prep->bindValue(':password', $hashedPassword);
-    $pdo_prep->bindValue(':user_lvl', 'N5');
-    $pdo_prep->bindValue(':abonnement', 'GRATUIT');
+    $pdo_prep->bindValue(':user_lvl', $user_lvl);
+    $pdo_prep->bindValue(':abonnement', $abonnement);
 
     // Exécuter la requête et vérifier si l'insertion a réussi
     return $pdo_prep->execute();

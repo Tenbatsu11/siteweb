@@ -34,7 +34,8 @@ if (isset($_GET['cid'])) {
 <body>
     <main class="fade-in">
         <form action="/siteweb/libs/set_topic.php" method="post" class="container d-flex align-items-center justify-content-center flex-column">
-            <h1>Créer un sujet dans la catégorie <?= $cid['topic_title'] ?></h1>
+            <h1>Créer un sujet dans la catégorie :</h1>
+                <h2><?= $cid['category_title'] ?></h2>
             <div class="mb-3 w-100">
                 <label for="topic_title" class="form-label">Titre du sujet</label>
                 <input type="text" class="form-control" id="topic_title" name="topic_title" required>

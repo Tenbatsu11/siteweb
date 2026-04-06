@@ -47,17 +47,6 @@ $categories = getCategoriesList($pdo, $filters);
                                                                                                                                                     echo htmlspecialchars($_GET["category_description"]);
                                                                                                                                                 } ?>">
                 </div>
-                <div class="p-3 border-bottom">
-                    <label for="JLPT">Niveau JLPT</label>
-                    <select name="JLPT" id="JLPT" class="form-select">
-                        <option value> -- Niveau JLPT -- </option>
-                        <?php foreach ($categories as $category): ?>
-                            <option value="<?= $category["jlptlvl"] ?>" <?php if (isset($_GET["jlptlvl"]) && $category["jlptlvl"] == $_GET["jlptlvl"]) {
-                                                                            echo 'selected="selected"';
-                                                                        } ?>><?= $category["jlptlvl"] ?></option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
                 <div class="mt-3">
                     <button type="submit" class="btn btn-primary w-100">Filtrer</button>
                 </div>

@@ -9,9 +9,9 @@ if (!isset($_SESSION['user'])) {
 
 if (isset($_POST['reply_submit'])) {
     $creator = $_SESSION['user']['id'];
-    $cid = $_POST['cid'];
-    $tid = $_POST['tid'];
-    $reply_content = $_POST['reply_content'];
+    $cid = (int)$_POST['cid'];
+    $tid = (int)$_POST['tid'];
+    $reply_content = htmlspecialchars(trim($_POST['reply_content']));
         
         $pdo_prep = $pdo->prepare("INSERT INTO posts (category_id, topic_id, post_creator,post_content, post_date) VALUES (:category_id, :topic_id, :post_creator, :post_content, now())");
         $pdo_prep->bindParam(':category_id', $cid, PDO::PARAM_INT);
@@ -21,7 +21,7 @@ if (isset($_POST['reply_submit'])) {
         try{
             $pdo_prep->execute();
         } catch (PDOException $e) {
-            die('Erreur lors de la création de la réponse: ' . $e->getMessage());
+            die('Erreur lors de la création de la réponse: ' );
         }
 
         $pdo_prep2 = $pdo->prepare("UPDATE categories SET last_post_date = now(), last_user_posted = :post_creator WHERE id = :category_id LIMIT 1");
@@ -31,7 +31,7 @@ if (isset($_POST['reply_submit'])) {
         try {
             $pdo_prep2->execute();
         } catch (PDOException $e) {
-            die('Erreur lors de la mise à jour de la catégorie: ' . $e->getMessage());
+            die('Erreur lors de la mise à jour de la catégorie: ' );
         }
 
         $pdo_prep3 = $pdo->prepare("UPDATE topics SET topic_reply_date = now(), topic_last_user = :post_creator WHERE category_id = :category_id AND id = :tid LIMIT 1");
@@ -41,7 +41,7 @@ if (isset($_POST['reply_submit'])) {
         try {
             $pdo_prep3->execute();
         } catch (PDOException $e) {
-            die('Erreur lors de la mise à jour du sujet: ' . $e->getMessage());
+            die('Erreur lors de la mise à jour du sujet: ' );
         }
         //Envoie d'email
 

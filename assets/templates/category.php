@@ -33,22 +33,17 @@ if (isset($_GET['cid'])) {
 
 <body>
     <main class="fade-in">
-        <h1 class="d-flex align-items-center justify-content-center flex-column">Catégorie</h1>
-
-        <div class="container d-flex align-items-center justify-content-center flex-column mb-4">
-            <p>Contenu de la catégorie</p>
-        </div>
         <div class="container d-flex align-items-center justify-content-center flex-column">
             <?php if ($cid) { ?>
+                <h1>Catégorie : </h1>
                 <h2><?= $cid['category_title'] ?></h2>
+                <h1>Description : </h1>
                 <p><?= $cid['category_description'] ?></p>
 
-                <div class="container row-cols-2 mb-3 g-3">
+                <div class="container row-cols-3 mb-2 g-3 d-flex gap-2 justify-content-center">
                     <a href="https://localhost/siteweb/forumhome.php" class="btn btn-primary">Retour au forum</a>
-                </div>
-                <div class="container row-cols-2 mb-3 g-3">
-                    <?php if (isset($_SESSION['user'])) { ?>
-                        <a href="https://localhost/siteweb/assets/templates/create_topic.php?cid=<?= $cid['id'] ?>" class="btn btn-primary">Créer un sujet</a>
+                    <?php if (isset($_SESSION['user']) && !empty($cid2)) { ?>
+                        <a href="https://localhost/siteweb/assets/templates/create_topic.php?cid=<?= $cid['id'] ?>" class="btn btn-secondary">Créer un sujet</a>
                     <?php } ?>
                 </div>
                 <?php if (!empty($cid2)) { ?>
@@ -58,7 +53,7 @@ if (isset($_GET['cid'])) {
                                 <?= htmlspecialchars($row['topic_title']) ?>
                             </a><br />
                             <span class="post-info">
-                                Posté par : <?= htmlspecialchars($row['topic_creator']) ?>
+                                Posté par : <?= htmlspecialchars($row['topic_creator_name']) ?>
                                 le <?= $row['topic_date'] ?> |
                                 Vues : <?= $row['topic_views'] ?>
                             </span>
@@ -66,8 +61,9 @@ if (isset($_GET['cid'])) {
                     <?php } ?>
                 <?php } else { ?>
                     <p>Aucun sujet disponible pour cette catégorie.</p>
-                    <?php if (isset($_SESSION['user'])) { ?>
-                        <a href="https://localhost/siteweb/assets/templates/create_topic.php?cid=<?= $cid['id'] ?>" class="btn btn-primary">Créer un sujet</a>
+                    <?php if (isset($_SESSION['user']) && empty($cid2)) { ?>
+                        <p><strong>Il n'y a pas encore de sujet dans cette catégorie. Soyez le premier à en créer un !</strong></p>
+                        <a href="https://localhost/siteweb/assets/templates/create_topic.php?cid=<?= $cid['id'] ?>" class="btn btn-secondary">Créer un sujet</a>
                     <?php } else { ?>
                         <p>Connectez-vous pour créer un sujet.</p>
                     <?php } ?>

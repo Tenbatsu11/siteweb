@@ -24,30 +24,32 @@
      <link rel="stylesheet" href="/siteweb/assets/css/override-boostrap.css">
  </head>
  <header class="d-flex flex-wrap align-items-center justify-content-center justify-content-md-between py-3 mb-4 border-bottom">
-     <div class="col-md-3 mb-2 mb-md-0">
-         <a href="https://localhost/siteweb/index.php" class="d-inline-flex link-body-emphasis text-decoration-none">
-             <img width="80" src="/siteweb/assets/images/logo-kumiai-unique.png">
-         </a>
-     </div>
-     <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
-         <li><a href="https://localhost/siteweb/index.php" class="nav-link px-2 link-primary">Home</a></li>
-         <li><a href="https://localhost/siteweb/kanjihome.php" class="nav-link px-2">Kanjis</a></li>
-         <li><a href="https://localhost/siteweb/vocabulairehome.php" class="nav-link px-2">Vocabulaire</a></li>
-         <li><a href="https://localhost/siteweb/getstarted.php" class="nav-link px-2">Bien Commencer</a></li>
-         <?php if (isset($_SESSION['user'])): ?>
-             <li><a href="https://localhost/siteweb/forumhome.php" class="nav-link px-2">Forum</a></li>
-             <li><a href="https://localhost/siteweb/desktop.php" class="nav-link px-2">Application de Bureau</a></li>
-         <?php endif; ?>
-     </ul>
+     <nav class='navbar navbar-expand-lg navbar-light bg-light w-100'>
+         <div class="col-md-3 mb-2 mb-md-0">
+             <a href="https://localhost/siteweb/index.php" class="d-inline-flex link-body-emphasis text-decoration-none">
+                 <img width="80" src="/siteweb/assets/images/logo-kumiai-unique.png">
+             </a>
+         </div>
+         <ul class="nav col-12 col-md-auto mb-2 justify-content-center mb-md-0">
+             <li><a href="https://localhost/siteweb/index.php" class="nav-link px-2 link-primary">Home</a></li>
+             <li><a href="https://localhost/siteweb/kanjihome.php" class="nav-link px-2">Kanjis</a></li>
+             <li><a href="https://localhost/siteweb/vocabulairehome.php" class="nav-link px-2">Vocabulaire</a></li>
+             <li><a href="https://localhost/siteweb/getstarted.php" class="nav-link px-2">Bien Commencer</a></li>
+             <?php if (isset($_SESSION['user'])): ?>
+                 <li><a href="https://localhost/siteweb/forumhome.php" class="nav-link px-2">Forum</a></li>
+                 <li><a href="https://localhost/siteweb/desktop.php" class="nav-link px-2">Application de Bureau</a></li>
+             <?php endif; ?>
+         </ul>
 
-     <div class="col-md-3 text-end">
-         <?php if (isset($_SESSION['user'])): ?>
-             <span class="me-2">Bonjour, <?= htmlspecialchars($_SESSION['user']['username']) ?></span>
-             <a href="https://localhost/siteweb/profile.php" class="btn btn-outline-primary me-2">Profile</a>
-             <a href="https://localhost/siteweb/logout.php" class="btn btn-outline-primary me-2">Logout</a>
-         <?php else: ?>
-             <a class="btn btn-outline-primary me-2" href="https://localhost/siteweb/Login/login.php">Connexion</a>
-             <a class="btn btn-outline-primary me-2" href="https://localhost/siteweb/register/registerpage.php">Inscription</a>
-         <?php endif; ?>
-     </div>
+         <div class="col-md-3 text-end">
+             <?php if (isset($_SESSION['user'])): ?>
+                 <span class="me-2">Bonjour, <?= htmlspecialchars($_SESSION['user']['username']) ?></span>
+                 <a href="https://localhost/siteweb/profile.php" class="btn btn-outline-primary me-2">Profile</a>
+                 <a href="https://localhost/siteweb/logout.php" class="btn btn-outline-primary me-2">Logout</a>
+             <?php else: ?>
+                 <a class="btn btn-outline-primary me-2" href="https://localhost/siteweb/Login/login.php">Connexion</a>
+                 <a class="btn btn-outline-primary me-2" href="https://localhost/siteweb/register/registerpage.php">Inscription</a>
+             <?php endif; ?>
+         </div>
+     </nav>
  </header>
