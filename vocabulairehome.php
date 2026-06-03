@@ -65,20 +65,18 @@ $categories = getJLPTLevels($pdo);
         <div class="col-md-9">
             <main class="fade-in">
                 <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                    <?php if (!isset($_SESSIONS ['user'])) { ?>
+                    <?php if (!isset($_SESSION['user'])) { ?>
                         <div class="container" style="background-color: #f8d7da; color: #721c24; padding: 20px; border-radius: 5px; margin-top: 20px;">
                             <p><strong>Consultez tous les vocabulaires et leurs détails en vous connectant ou en créant un compte !</strong></p>
                             <p>Pour pouvoir accéder à tous les vocabulaires et leurs détails, veuillez vous connecter ou créer un compte.
                                 <a href="https://localhost/siteweb/Login/login.php" class="alert-link">Se connecter / S'inscrire</a>.
                             </p>
                         </div>
-                    <?php } else { ?>
-                        <?php foreach ($vocab as $key => $vocab) { ?>
-                            <?php
+                    <?php } else {
+                        foreach ($vocab as $key => $vocab) {
                             require(__DIR__ . '/assets/templates/vocabcard.php');
-                            ?>
-                        <?php } ?>
-                    <?php } ?>
+                        }
+                     } ?>
                 </div>
             </main>
         </div>
