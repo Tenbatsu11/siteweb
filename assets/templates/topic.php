@@ -39,24 +39,24 @@ if (isset($_GET['cid']) && isset($_GET['tid'])) {
                 <div class="container mt-4">
                     <div class="card mb-3">
                         <div class="card-body">
-                            <h5 class="card-title"><?= htmlspecialchars($row['topic_title']) ?></h5>
+                            <h5 class="card-title"><?= htmlspecialchars($topic['topic_title']) ?></h5>
                             <p class="card-text"><?= nl2br(htmlspecialchars($row2['post_content'])) ?></p>
                             <p class="card-text">
                                 <small class="text-muted">Posté par : <?= htmlspecialchars($row2['post_creator_name']) ?> le <?= $row2['post_date'] ?></small>
                             </p>
+                            <div class="container d-flex align-items-center justify-content-center flex-column mb-4">
+                                <a class="btn btn-danger justify-content-center" href="/siteweb/assets/templates/post_signalement.php?post_id=<?= urlencode($row2['id']) ?>&cid=<?= urlencode($cid) ?>&tid=<?= urlencode($tid) ?>">Signaler le post</a>
+                            </div>
                         </div>
                     </div>
                 </div>
             <?php } ?>
             <div class="container d-flex align-items-center justify-content-center flex-column mb-4">
-                <input type='submit' class='btn btn-primary justify-content-center' value=' Ajouter une réponse '
-                    onclick="window.location = 'https://localhost/siteweb/assets/templates/post_reply.php?cid=<?= $cid ?>&tid=<?= $tid ?>'">
+                <a class="btn btn-primary justify-content-center" href="/siteweb/assets/templates/post_reply.php?cid=<?= urlencode($cid) ?>&tid=<?= urlencode($tid) ?>">Ajouter une réponse</a>
             </div>
 
 
-            <?php $oldviews = $row['topic_views'];
-            $newviews = $oldviews + 1;
-            ?>
+            <?php // views already updated via updateTopicViews(); ?>
         <?php } else { ?>
             <p>Vous devez être connecté pour répondre à ce sujet.</p>
         <?php } ?>
